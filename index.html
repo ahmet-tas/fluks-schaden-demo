@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="h-full bg-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incon - Neue Schadensmeldung</title>
+    <link href="./public/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+</head>
+<body class="bg-white rounded-lg py-5">    
+    <div id="loginForm" data-bind="visible: showLoginForm" class="container flex flex-col mx-auto bg-white rounded-lg pt-12 my-5">
+       <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
+        <div class="flex items-center justify-center w-full lg:p-12">
+          <div class="flex items-center xl:p-10">
+            <form class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+              <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">domoforce</h3>
+              <p class="mb-4 text-grey-700">Geben Sie Ihre domoforce Anmeldedaten ein</p>
+              <div class="flex items-center mb-3">
+                <hr class="h-0 border-b border-solid border-grey-500 grow">
+                <hr class="h-0 border-b border-solid border-grey-500 grow">
+              </div>
+              <label for="email" class="mb-2 text-sm text-start text-grey-900">E-Mail*</label>
+              <input data-bind="value: loginFormViewModel.email" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl" id="email" type="email" placeholder="Email">
+              <label for="licenseKey" class="mb-2 text-sm text-start text-grey-900">Lizenzschlüssel *</label>
+              <input data-bind="value: loginFormViewModel.licenseKey" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl" id="licenseKey" type="text" placeholder="License Key">
+              <div class="flex flex-row justify-between mb-8"></div>
+              <button data-bind="click: loginFormViewModel.submitForm" class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Anmelden</button>
+            </form>
+          </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="formStep2" data-bind="visible: showFormStep2" class="container mx-auto p-4">
+      <!-- Buildings Listbox -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="buildings">
+              Gebäude *
+          </label>
+          <select data-bind="options: formViewModel.buildings, optionsText: 'address', optionsValue: 'id', value: formViewModel.selectedBuilding, optionsCaption: 'Gebäude wählen'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+          </select>
+      </div>
+  
+      <!-- Contracts Listbox -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="contracts">
+              Vertragsart *
+          </label>
+          <select data-bind="options: formViewModel.contracts, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedContract, optionsCaption: 'Vertrag wählen'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+          </select>
+      </div>
+
+      <!-- Level 1 Category Listbox -->
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="incidentCategories">
+          Schadenskategorie
+        </label>
+        <select data-bind="options: formViewModel.incidentCategories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel1Category, optionsCaption: 'Kategorie wählen'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"></select>
+      </div>
+
+      <!-- Dynamic Listbox for Level 2 Categories -->
+      <!-- Display this section only if there are level 2 categories -->
+      <div class="mb-4" data-bind="visible: formViewModel.level2Categories().length > 0">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="level2Categories">
+            Unterkategorie
+          </label>
+          <select data-bind="options: formViewModel.level2Categories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel2Category, optionsCaption: 'Please choose'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+          </select>
+      </div>
+
+      <!-- Dynamic Listbox for Level 3 Categories -->
+      <!-- Display this section only if there are level 3 categories -->
+      <div class="mb-4" data-bind="visible: formViewModel.level3Categories().length > 0">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="level3Categories">
+            Unter-Unterkategorie
+          </label>
+          <select data-bind="options: formViewModel.level3Categories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel3Category, optionsCaption: 'Please choose'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+          </select>
+      </div>
+
+  
+      <!-- Navigation Buttons -->
+      <div class="inline-flex">
+        <button data-bind="click: goToStep3" class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">
+          Weiter
+        </button>
+      </div>
+  </div>
+
+
+  <div id="formStep3" data-bind="visible: showFormStep3" class="container mx-auto p-4">
+    <!-- Dynamic Form Fields -->
+    <div data-bind="foreach: formViewModel.incidentFields">
+        <!-- Generate different input types based on 'type' -->
+        <!-- This is a basic example; you may need to expand it based on your field types -->
+        <!-- ko if: type === 'string' -->
+        <label for="name" data-bind="text: label" class="mb-2 text-sm text-start text-grey-900"></label>
+        <input type="text" data-bind="value: value, attr: {name: name, placeholder: label}" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl">
+        <!-- /ko -->
+        <!-- ko if: type === 'number' -->
+        <label for="name" data-bind="text: label" class="mb-2 text-sm text-start text-grey-900"></label>
+        <input type="number" data-bind="value: value, attr: {name: name, placeholder: label}" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl">
+        <!-- /ko -->
+        <!-- ko if: type === 'text' -->
+        <label for="name" data-bind="text: label" class="mb-2 text-sm text-start text-grey-900"></label>
+        <!-- <input type="text" data-bind="attr: {name: name, placeholder: label}" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"> -->
+        <textarea data-bind="value: value, attr: {name: name, placeholder: label}" rows="4" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"></textarea>
+        <!-- /ko -->
+        <!-- Add other input types as needed -->
+    </div>
+
+
+    <button data-bind="click: goToStep2" class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">
+      Zurück
+    </button>
+    <button data-bind="click: formViewModel.submitForm" class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">
+      Meldung anlegen
+    </button>
+<!--     <button data-bind="click: goToStep4" class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">
+      Next
+    </button> -->
+  </div>
+
+  <script src="./dist/bundle.js"></script>
+</body>
+</html>
