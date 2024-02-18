@@ -13,7 +13,9 @@
         <div class="flex items-center justify-center w-full lg:p-12">
           <div class="flex items-center xl:p-10">
             <form class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
-              <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">domoforce</h3>
+              <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">
+                <img src="./public/domoforce_logo_1x_dark.png" />
+              </h3>
               <p class="mb-4 text-grey-700">Geben Sie Ihre domoforce Anmeldedaten ein</p>
               <div class="flex items-center mb-3">
                 <hr class="h-0 border-b border-solid border-grey-500 grow">
@@ -32,6 +34,9 @@
     </div>
 
     <div id="formStep2" data-bind="visible: showFormStep2" class="container mx-auto p-4">
+      <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">
+        <img src="./public/domoforce-Logo.svg" width="40"/>INCONconnect
+      </h3>
       <!-- Buildings Listbox -->
       <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="buildings">
@@ -64,17 +69,17 @@
           <label class="block text-gray-700 text-sm font-bold mb-2" for="level2Categories">
             Unterkategorie
           </label>
-          <select data-bind="options: formViewModel.level2Categories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel2Category, optionsCaption: 'Please choose'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+          <select data-bind="options: formViewModel.level2Categories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel2Category, optionsCaption: 'Unterkategorie wählen'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
           </select>
       </div>
 
       <!-- Dynamic Listbox for Level 3 Categories -->
       <!-- Display this section only if there are level 3 categories -->
       <div class="mb-4" data-bind="visible: formViewModel.level3Categories().length > 0">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="level3Categories">
+<!--           <label class="block text-gray-700 text-sm font-bold mb-2" for="level3Categories">
             Unter-Unterkategorie
-          </label>
-          <select data-bind="options: formViewModel.level3Categories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel3Category, optionsCaption: 'Please choose'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
+          </label> -->
+          <select data-bind="options: formViewModel.level3Categories, optionsText: 'name', optionsValue: 'id', value: formViewModel.selectedLevel3Category, optionsCaption: 'Bitte wählen'" class="shadow border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline">
           </select>
       </div>
 
@@ -89,6 +94,10 @@
 
 
   <div id="formStep3" data-bind="visible: showFormStep3" class="container mx-auto p-4">
+    <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">
+      <img src="./public/domoforce-Logo.svg" width="40"/>INCONconnect
+    </h3>
+
     <!-- Dynamic Form Fields -->
     <div data-bind="foreach: formViewModel.incidentFields">
         <!-- Generate different input types based on 'type' -->
